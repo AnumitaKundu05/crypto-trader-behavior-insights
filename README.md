@@ -5,92 +5,91 @@
 <img width="1268" height="734" alt="ct4" src="https://github.com/user-attachments/assets/76a539ae-fa14-4acd-b140-1144b6aee795" />
 
 
+#  Trader Behavior vs Market Sentiment Analysis
 
-# 📊 Trader Behavior vs Market Sentiment Analysis
+## Objective
+This project looks into how trader performance changes with overall market sentiment. By combining the Bitcoin Fear & Greed Index with Hyperliquid trading data, the aim is to understand how traders behave under different market conditions.
 
-## 📌 Objective
-This project explores the relationship between trader performance and market sentiment using the Bitcoin Fear & Greed Index and Hyperliquid trading data.
-
-The goal is to identify behavioral patterns and derive actionable insights that can improve trading strategies.
+The focus is on identifying patterns in decision-making and using those insights to improve trading strategies.
 
 ---
 
-## 📂 Datasets
+## atasets
 
 ### 1. Bitcoin Market Sentiment Dataset
 - Columns: `date`, `classification`
-- Categories: Extreme Fear, Fear, Neutral, Greed, Extreme Greed
+- Sentiment categories: Extreme Fear, Fear, Neutral, Greed, Extreme Greed
 
 ### 2. Hyperliquid Historical Trader Data
-- Columns include:
+- Includes fields such as:
   - `account`, `coin`, `execution_price`, `size_usd`
   - `side`, `timestamp_ist`, `closed_pnl`
-  - and other trading-related features
+  - along with other trade-related metrics
 
 ---
 
-## 🛠 Data Processing
+## Data Processing
 
-- Cleaned column names (lowercase, removed spaces)
-- Fixed timestamp issue:
-  - Ignored incorrect `timestamp` column (1970 values)
+- Standardized column names (lowercase, removed spaces)
+- Fixed timestamp issues:
+  - Ignored the incorrect `timestamp` column (defaulting to 1970 values)
   - Used `timestamp_ist` as the correct time reference
-- Converted timestamps to datetime format
+- Converted timestamps into datetime format
 - Extracted `date` from timestamps
-- Merged sentiment data with trading data on `date`
+- Merged trading data with sentiment data based on `date`
 
 ---
 
-## ⚙️ Feature Engineering
+## Feature Engineering
 
-- **Profit** → `closed_pnl`
-- **Win Rate** → `profit > 0`
+- **Profit** → derived from `closed_pnl`
+- **Win Rate** → trades where profit > 0
 - **Position Size** → `size_usd`
 - **Trade Direction Encoding** → BUY = 1, SELL = -1
 
 ---
 
-## 📈 Analysis
+## Analysis
 
 ### 🔹 Profit by Sentiment
-- Highest average profit during **Extreme Greed**
-- Lowest during **Extreme Fear / Neutral**
+- Highest average profit observed during **Extreme Greed**
+- Lower profitability during **Extreme Fear** and **Neutral** phases
 
 ### 🔹 Win Rate by Sentiment
 - Peak win rate in **Extreme Greed (~46.5%)**
-- Lowest in **Extreme Fear (~37%)**
+- Lowest win rate in **Extreme Fear (~37%)**
 
 ### 🔹 Position Size Behavior
-- Highest capital deployed during **Fear (~$7816)**
-- Lowest during **Extreme Greed (~$3112)**
+- Largest capital allocation during **Fear (~$7816)**
+- Smallest position sizes during **Extreme Greed (~$3112)**
 
 ---
 
-## 🧠 Key Insights
+## Key Insights
 
-- Traders perform best during **Extreme Greed**, where both profitability and win rate are highest.
-- Despite this, they allocate the **largest capital during Fear**, indicating inefficient risk allocation.
-- **Extreme Fear** represents the most unfavorable trading condition.
+- Trading performance is strongest during **Extreme Greed**, with both higher profits and win rates.
+- Traders tend to allocate more capital during **Fear**, even though performance is weaker.
+- **Extreme Fear** appears to be the least favorable condition for trading.
 - There is a clear behavioral mismatch:
-  - Traders are **risk-seeking in uncertain conditions**
-  - Traders are **risk-averse in optimal conditions**
+  - Traders take on more risk in uncertain conditions
+  - Traders become more cautious when conditions are actually favorable
 
 ---
 
-## 📌 Strategy Recommendations
+## Strategy Recommendations
 
-- Increase exposure during **Extreme Greed** (higher success probability)
-- Reduce position size during **Fear and Extreme Fear**
-- Avoid aggressive trading in volatile market conditions
-- Implement stricter risk management during panic phases
-
----
-
-## 🚀 Conclusion
-
-The analysis reveals strong behavioral inefficiencies in trading decisions. Aligning capital allocation with favorable sentiment conditions can significantly improve performance and reduce risk.
+- Increase exposure during **Extreme Greed**, where probability of success is higher
+- Reduce position size during **Fear** and **Extreme Fear**
+- Avoid aggressive trading during highly volatile conditions
+- Apply stricter risk management during panic-driven markets
 
 ---
 
-## 📎 Author
-**Rajdip Dey**
+## Conclusion
+
+The analysis highlights clear inefficiencies in how traders allocate risk. Aligning capital deployment with favorable sentiment conditions can improve overall performance and reduce unnecessary losses.
+
+---
+
+## Author
+**Anumita Kundu**
